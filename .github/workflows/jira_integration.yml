@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   find_issue:
-    if: "!contains(github.event.commits[0].message, '[Merge branch ]')"
     runs-on: ubuntu-latest
     steps:
       - name: Login
@@ -13,7 +12,7 @@ jobs:
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-
+    
       - name: Jira Find issue key
         uses: developer-productivity/gajira-find-issue-key@v2.0.1
         with:
